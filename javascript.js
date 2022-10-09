@@ -1,53 +1,29 @@
-//rock, paper, scissors ^
-//computer needs to select an option(rock,paper,scissors)randomly ^
-//rock needs to beat scissors
-//paper needs to beat rock
-//scissors needs to beat paper
-//same choice === tie
-
-
-console.log('Hello World');
-
-const options = ['rock', 'paper', 'scissors']
+console.log('Hello World')
 
 function getComputerChoice(){
-    const compChoice = options[Math.floor(Math.random() * options.length)];
-    console.log(compChoice);
-    return compChoice;
-   
+   let choices = ['rock', 'paper', 'scissors']
+   return choices[Math.floor(Math.random() * 3)]  
 }
 
-function winner(playerSelection,computerSelection){
-    if(playerSelection === computerSelection){
-        return 'tie';
-    }
+function playRound(playerSelection,computerSelection){
     if(
         (playerSelection === 'rock' && computerSelection === 'scissors') ||
-        (playerSelection === 'scissors' && computerSelection === 'paper') ||
-        (playerSelection === 'paper' && computerSelection === 'rock')
+        (playerSelection === 'paper' && computerSelection === 'rock') ||
+        (playerSelection === 'scissors' && computerSelection === 'paper')
     ){
-        return 'player';
+        return `You Win! ${playerSelection} beats ${computerSelection}!`
     }
-    else{
-        return 'computer';
+    else if(
+        (computerSelection === 'rock' && playerSelection === 'scissors') ||
+        (computerSelection === 'paper' && playerSelection === 'rock') ||
+        (computerSelection === 'scissors' && playerSelection === 'paper')
+    ){
+        return `You Lose! ${computerSelection} beats ${playerSelection}!` 
     }
-}
-
-function round(playerSelection,computerSelection){
-    const result = winner(playerSelection,computerSelection);
-    if(result === 'tie'){
-        return 'Wow! it \'s a tie!';
-    } 
-    if(result === 'player'){
-        return `Wow! you win! ${playerSelection} beats ${computerSelection}`;
-    }
-    else if(result === 'computer'){
-        return `Oh no! you lost, ${computerSelection} beats ${playerSelection}`;
+    else if(playerSelection === computerSelection){
+        return 'Wow! it\'s a tie!'
     }
 }
-
-
-const playerSelection = 'rock'
+const playerSelection = "scissors";
 const computerSelection = getComputerChoice();
-console.log(playerSelection);
-console.log(round(playerSelection,computerSelection));
+console.log(playRound(playerSelection, computerSelection));
