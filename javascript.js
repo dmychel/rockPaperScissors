@@ -1,94 +1,103 @@
-console.log('Hello World');
+console.log('Hello! Welcome to the battle! Choose your weapon carefully!');
+
+//options
+const options = ['archer', 'horseback', 'knight'];
+
+//random compChoice
+function getCompChoice(compSelection){
+   compSelection = options[Math.floor(Math.random() * 3)];
+   console.log(compSelection);
+   return compSelection
+}
 
 
-const options = ['rock', 'paper', 'scissors']
 
 
+//player choice
 function getPlayerChoice(playerSelection){
-    let validChoice = false;
-    while(validChoice == false){
-        playerSelection = prompt('rock, paper, or scissors?').toLowerCase();
+    let validOption = false;
+    while(validOption == false){
+        playerSelection = prompt('Choose your warrior! Knight, Archer, or Horseback').toLowerCase();
         if(playerSelection == null){
             continue;
         }
-        if (options.includes(playerSelection)){
-            validChoice == true;
-            return playerSelection;
+        if(options.includes(playerSelection)){
+            validOption == true;
+            return playerSelection;  
         }
     }
 }
 
-function getComputerChoice(){
-     const computerSelection = options[Math.floor(Math.random() * 3)]
-     return computerSelection;
-}
 
-
-
-function playRound(computerSelection,playerSelection){
+function playRound(playerSelection, compSelection){
     if(
-        (playerSelection === 'rock' && computerSelection === 'scissors') ||
-        (playerSelection === 'paper' && computerSelection === 'rock') ||
-        (playerSelection === 'scissors' && computerSelection === 'paper')
-    ){
-        return `You Win! ${playerSelection} beats ${computerSelection}!`
-    }
-    else if(
-        (computerSelection === 'rock' && playerSelection === 'scissors') ||
-        (computerSelection === 'paper' && playerSelection === 'rock') ||
-        (computerSelection === 'scissors' && playerSelection === 'paper')
-    ){
-        return `You Lose! ${computerSelection} beats ${playerSelection}!`
-    }
-    else if(playerSelection === computerSelection){
-        return 'Wow! it\'s a tie!'
-    }
-}
+         (playerSelection === 'archer' && compSelection === 'knight') ||
+         (playerSelection === 'horseback' && compSelection === 'archer') ||
+         (playerSelection === 'knight' && compSelection === 'horseback')
+     ){
+         return `You win! ${playerSelection} beats ${compSelection}!`
+     }
+     else if(
+         (compSelection === 'archer' && playerSelection === 'knight') ||
+         (compSelection === 'horseback' && playerSelection === 'archer') ||
+         (compSelection === 'knight' && playerSelection === 'horseback')
+     ){
+         return `You lose! ${compSelection} beats ${playerSelection}!`
+     }
+     else{
+         return `It's  tie!`
+     }
+ }
 
-function winner(playerSelection,computerSelection){
-    if(
-        (playerSelection === 'rock' && computerSelection === 'scissors') ||
-        (playerSelection === 'paper' && computerSelection === 'rock') ||
-        (playerSelection === 'scissors' && computerSelection === 'paper')
+
+ 
+
+//round logic
+function checkWinner(playerSelection, compSelection){
+    console.log('Choose your weapon next weapon!')
+   if(
+        (playerSelection === 'rock' && compSelection === 'scissor') ||
+        (playerSelection === 'paper' && compSelection === 'rock') ||
+        (playerSelection === 'scissor' && compSelection === 'paper')
     ){
         return 'player'
     }
     else if(
-        (computerSelection === 'rock' && playerSelection === 'scissors') ||
-        (computerSelection === 'paper' && playerSelection === 'rock') ||
-        (computerSelection === 'scissors' && playerSelection === 'paper')
+        (compSelection === 'rock' && playerSelection === 'scissor') ||
+        (compSelection === 'paper' && playerSelection === 'rock') ||
+        (compSelection === 'scissor' && playerSelection === 'paper')
     ){
         return 'computer'
     }
-    else if(playerSelection === computerSelection){
+    else{
         return 'tie'
     }
 }
 
-function game(){
+
+//game logic
+function gameLogic(playerSelection, compSelection){
     let playerScore = 0;
-    let computerScore = 0;
-    for (let i = 0; i < 5; i++) {
-     const playerSelection = getPlayerChoice();
-     const computerSelection = getComputerChoice();
-     console.log(playRound(computerSelection,playerSelection));
-     if (winner(playerSelection,computerSelection) == 'player'){
-        playerScore++;
-     }
-     else if(winner(playerSelection,computerSelection) == 'computer'){
-        computerScore++;
-     }
-     }
-     console.log('Game over');
-     if(playerScore > computerScore){
-        console.log('You won the game!')
-     }
-     else if(computerScore > playerScore){
-        console.log('You lose! The computer won the game.')
-     }
-     else if(playerScore === computerScore){
-        console.log('It\'s a tie!')
-     }
+    let compScore = 0;
+    for(let i = 0; i < 5; i++){
+        const playerSelection = getPlayerChoice();
+        const compSelection = getCompChoice();
+        console.log('Choose your next warrior!')
+        console.log(playRound(playerSelection,compSelection));
+        console.log('--------------------------------------');
+        if(checkWinner(playerSelection,compSelection) == 'player'){
+            playerScore++;
+        }
+        else{
+            compScore++
+        }
+    }
+    if(playerScore > compScore){
+        console.log('You Won the War!!!')
+    }
+    else{
+        console.log('You Lost the War!!!')
+    }
 }
 
-game()
+gameLogic()
