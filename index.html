@@ -3,9 +3,33 @@
     <head>
         <meta charset="UTF-8">
         <title>Rock Paper Scissors in the Console</title>
+        <link rel="stylesheet" href="style.css">
+        <script src="javascript.js" async></script>
     </head>
     <body>
+        <div class="playerWrapper">
+            <div class="user">
+                <h1>Player</h1>
+                <h2 id="playerChoice">Player Choice</h2>
+                <h2 class="playerScore" id="playerScore">0</h2>
+            </div>
+            <div class="computer">
+                <h1>Computer</h1>
+                <h2 id="computerChoice">Computer Choice</h2> 
+                <h2 class="computerScore" id="computerScore">0</h2>
+            </div>
+        </div>
 
-    <script src="/javascript.js"></script>
+        <div class="resultContainer">
+            <div class="result">
+                <h1>Result</h1>
+                <h2 id="result">'winner'</h2>
+            </div>
+        </div>
+        <div class="wrapper">
+            <button class="options" id="archer">Archer</button>
+            <button class="options" id="cavalry">Cavalry</button>
+            <button class="options" id="knight">Knight</button>
+        </div>
     </body>
 </html>
