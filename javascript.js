@@ -108,7 +108,6 @@ let computerScore = 0
             endGame_h2.innerHTML = 'Player Wins the War!!';
             wrapper_h2.remove();
             resultContainer_div.remove();
-            resetButton.innerHTML = 'Reset Game';
             resetGame();
         }
         else if(computerScore === 5){
