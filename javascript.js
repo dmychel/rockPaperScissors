@@ -14,8 +14,10 @@ const cavalry = document.getElementById('cavalry');
 const archer = document.getElementById('archer');
 const knight = document.getElementById('knight');
 const endGame_h2 = document.getElementById('endGame');
-let wrapper_h2 = document.getElementById('wrapper')
-let resultContainer_div = document.getElementById('result')
+let wrapper_h2 = document.getElementById('wrapper');
+let resultContainer_div = document.getElementById('result');
+let button_div = document.getElementById('buttonDiv')
+
 
 let playerScore = 0;
 let computerScore = 0
@@ -28,7 +30,7 @@ let computerScore = 0
         console.log(computerSelection);
         playRound(playerSelection,computerSelection);
         checkScore(playerSelection,computerSelection);
-        resetGame(playerScore,computerScore);
+        endGame(playerScore,computerScore);
         playerChoice_h2.innerHTML = playerSelection;
         computerChoice_h2.innerHTML = computerSelection;
     });
@@ -41,7 +43,7 @@ let computerScore = 0
         console.log(computerSelection);
         playRound(playerSelection,computerSelection);
         checkScore(playerSelection,computerSelection);
-        resetGame(playerScore,computerScore);
+        endGame(playerScore,computerScore);
         playerChoice_h2.innerHTML = playerSelection;
         computerChoice_h2.innerHTML = computerSelection;
     });
@@ -54,7 +56,7 @@ let computerScore = 0
         console.log(computerSelection);
         playRound(playerSelection,computerSelection);
         checkScore(playerSelection,computerSelection);
-        resetGame(playerScore,computerScore);
+        endGame(playerScore,computerScore);
         playerChoice_h2.innerHTML = playerSelection;
         computerChoice_h2.innerHTML = computerSelection;
     });
@@ -101,16 +103,29 @@ let computerScore = 0
             }
     }
 
-    function resetGame(playerScore,computerScore){
+    function endGame(playerScore,computerScore){
         if(playerScore === 5){
             endGame_h2.innerHTML = 'Player Wins the War!!';
             wrapper_h2.remove();
             resultContainer_div.remove();
+            resetButton.innerHTML = 'Reset Game';
+            resetGame();
         }
         else if(computerScore === 5){
             endGame_h2.innerHTML = 'Computer Wins the War!!'
             wrapper_h2.remove();
             resultContainer_div.remove();
+            resetGame();
         }
     };
-  
+
+    function resetGame(){
+        let resetButton = document.createElement('button');
+        let resetButtonText = document.createTextNode('Reset Game');
+        resetButton.appendChild(resetButtonText);
+        button_div.appendChild(resetButton);
+
+        resetButton.addEventListener('click', function(){
+            location.reload()
+        })
+    }
